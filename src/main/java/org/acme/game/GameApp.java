@@ -21,7 +21,7 @@ public class GameApp {
     public static void main(final String[] args) {
         System.out.println("Paper-Rock-Scissors");
         System.out.println("Let's start the gaming season");
-        new Gaming().run();
+        new Gaming().start();
     }
 
     private static class Gaming {
@@ -31,18 +31,18 @@ public class GameApp {
                                                                          SCISSORS.getOption(), SCISSORS);
 
         private final Random random = new Random();
+        private final Scanner input = new Scanner(System.in);
 
-        private void run() {
-            final Scanner input = new Scanner(System.in);
-            int handSymbol = 1;
+        private void start() {
+            System.out.println("Show your hand \n\tYour Options: " + HandOptions.options());
+            int handSymbol = input.nextInt();
 
-            while (handSymbol != 0) {
-                System.out.println("Show your hand \n\tYour Options: " + HandOptions.options());
-                handSymbol = input.nextInt();
+            if (handSymbol != 0) {
                 matchResult(handSymbol);
+                start();
+            } else {
+                presentScore();
             }
-
-            presentScore();
         }
 
         private void matchResult(final int handSymbol) {
@@ -55,6 +55,7 @@ public class GameApp {
         }
 
         private void presentScore() {
+            System.out.println("Endgame");
         }
 
         private HandOptions userOption(final int hand) {
