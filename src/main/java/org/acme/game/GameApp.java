@@ -49,9 +49,9 @@ public class GameApp {
             final HandOptions against = machineOption();
             final HandOptions userHand = userOption(handSymbol);
             final MatchOutcome result = userHand.beat(against);
-            System.out.println("Match result: " + result);
-            System.out.println("You played: " + userHand);
-            System.out.println("Machine played: " + against);
+            System.out.println("Match result: " + result.name());
+            System.out.println("You played: " + userHand.name());
+            System.out.println("Machine played: " + against.name());
         }
 
         private void presentScore() {
