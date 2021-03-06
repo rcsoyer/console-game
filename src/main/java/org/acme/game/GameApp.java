@@ -35,6 +35,7 @@ public class GameApp {
 
         private void start() {
             System.out.println("Show your hand \n\tYour Options: " + HandOptions.options());
+            System.out.println("To exit the game: 0");
             int handSymbol = input.nextInt();
 
             if (handSymbol != 0) {
@@ -113,9 +114,9 @@ public class GameApp {
         abstract MatchOutcome beat(final HandOptions against);
 
         public static String options() {
-            return PAPER.getOption() + ". " + PAPER.name() + "\n\t\t\t\t"
-                     + ROCK.getOption() + ". " + ROCK.name() + "\n\t\t\t\t"
-                     + SCISSORS.getOption() + ". " + SCISSORS.name() + "\n\t\t\t\t";
+            return PAPER.getOption() + ". " + PAPER.name() + "\t\t"
+                     + ROCK.getOption() + ". " + ROCK.name() + "\t\t"
+                     + SCISSORS.getOption() + ". " + SCISSORS.name() + "\t\t";
         }
     }
 
