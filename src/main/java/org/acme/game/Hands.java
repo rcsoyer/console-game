@@ -11,10 +11,10 @@ import static org.acme.game.MatchOutcome.USER_WIN;
 @Getter
 @ToString
 @RequiredArgsConstructor
-enum HandOptions {
+enum Hands {
     PAPER(1) {
         @Override
-        MatchOutcome beat(final HandOptions against) {
+        MatchOutcome beat(final Hands against) {
             return switch (against) {
                 case PAPER -> TIE;
                 case SCISSORS -> USER_LOST;
@@ -24,7 +24,7 @@ enum HandOptions {
     },
     ROCK(2) {
         @Override
-        MatchOutcome beat(final HandOptions against) {
+        MatchOutcome beat(final Hands against) {
             return switch (against) {
                 case PAPER -> USER_LOST;
                 case SCISSORS -> USER_WIN;
@@ -34,7 +34,7 @@ enum HandOptions {
     },
     SCISSORS(3) {
         @Override
-        MatchOutcome beat(final HandOptions against) {
+        MatchOutcome beat(final Hands against) {
             return switch (against) {
                 case PAPER -> USER_WIN;
                 case SCISSORS -> TIE;
@@ -45,5 +45,5 @@ enum HandOptions {
 
     private final int hand;
 
-    abstract MatchOutcome beat(final HandOptions against);
+    abstract MatchOutcome beat(final Hands against);
 }
