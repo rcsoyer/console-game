@@ -14,6 +14,8 @@ import static org.acme.game.HandOptions.SCISSORS;
 
 public final class Gaming {
 
+    private static final int END_GAME = 0;
+
     private final Map<Integer, HandOptions> possibleHands = Map.of(PAPER.getHand(), PAPER,
                                                                    ROCK.getHand(), ROCK,
                                                                    SCISSORS.getHand(), SCISSORS);
@@ -25,7 +27,7 @@ public final class Gaming {
         System.out.println("\nShow your hand \n\tYour Options: " + options());
         int handSymbol = input.nextInt();
 
-        if (handSymbol != 0) {
+        if (handSymbol != END_GAME) {
             results.add(matchResult(handSymbol));
             start();
         } else {
