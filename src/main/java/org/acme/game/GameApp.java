@@ -26,16 +26,14 @@ public class GameApp {
 
     private static class Gaming {
 
-        private final Map<Integer, HandOptions> possibleOptions = Map.of(PAPER.getOption(), PAPER,
-                                                                         ROCK.getOption(), ROCK,
-                                                                         SCISSORS.getOption(), SCISSORS);
-
+        private final Map<Integer, HandOptions> possibleHands = Map.of(PAPER.getHand(), PAPER,
+                                                                       ROCK.getHand(), ROCK,
+                                                                       SCISSORS.getHand(), SCISSORS);
         private final Random random = new Random();
         private final Scanner input = new Scanner(System.in);
 
         private void start() {
-            System.out.println("Show your hand \n\tYour Options: " + HandOptions.options());
-            System.out.println("To exit the game: 0");
+            System.out.println("\nShow your hand \n\tYour Options: " + options());
             int handSymbol = input.nextInt();
 
             if (handSymbol != 0) {
@@ -61,16 +59,23 @@ public class GameApp {
 
         private HandOptions userOption(final int hand) {
             return Optional
-                     .ofNullable(possibleOptions.get(hand))
+                     .ofNullable(possibleHands.get(hand))
                      .orElseThrow(() -> new IllegalArgumentException("Invalid option"));
         }
 
         @SuppressWarnings("OptionalGetWithoutIsPresent")
         private HandOptions machineOption() {
-            return possibleOptions.get(random
-                                         .ints(1, 3)
-                                         .findFirst()
-                                         .getAsInt());
+            return possibleHands.get(random
+                                       .ints(1, 3)
+                                       .findFirst()
+                                       .getAsInt());
+        }
+
+        public static String options() {
+            return PAPER.getHand() + ". " + PAPER.name() + "\t\t"
+                     + ROCK.getHand() + ". " + ROCK.name() + "\t\t"
+                     + SCISSORS.getHand() + ". " + SCISSORS.name() + "\t\t"
+                     + "0. Endgame\t\t";
         }
     }
 
@@ -109,15 +114,9 @@ public class GameApp {
             }
         };
 
-        private final int option;
+        private final int hand;
 
         abstract MatchOutcome beat(final HandOptions against);
-
-        public static String options() {
-            return PAPER.getOption() + ". " + PAPER.name() + "\t\t"
-                     + ROCK.getOption() + ". " + ROCK.name() + "\t\t"
-                     + SCISSORS.getOption() + ". " + SCISSORS.name() + "\t\t";
-        }
     }
 
     enum MatchOutcome {
