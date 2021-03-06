@@ -1,5 +1,7 @@
 package org.acme.game;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Random;
@@ -31,26 +33,28 @@ public class GameApp {
                                                                        SCISSORS.getHand(), SCISSORS);
         private final Random random = new Random();
         private final Scanner input = new Scanner(System.in);
+        private final List<GameResults> results = new LinkedList<>();
 
         private void start() {
             System.out.println("\nShow your hand \n\tYour Options: " + options());
             int handSymbol = input.nextInt();
 
             if (handSymbol != 0) {
-                matchResult(handSymbol);
+                results.add(matchResult(handSymbol));
                 start();
             } else {
                 presentScore();
             }
         }
 
-        private void matchResult(final int handSymbol) {
+        private GameResults matchResult(final int handSymbol) {
             final HandOptions against = machineOption();
             final HandOptions userHand = userOption(handSymbol);
             final MatchOutcome result = userHand.beat(against);
             System.out.println("Match result: " + result.name());
             System.out.println("You played: " + userHand.name());
             System.out.println("Machine played: " + against.name());
+            return new GameResults(userHand, against, result);
         }
 
         private void presentScore() {
@@ -77,6 +81,9 @@ public class GameApp {
                      + SCISSORS.getHand() + ". " + SCISSORS.name() + "\t\t"
                      + "0. Endgame\t\t";
         }
+    }
+
+    public record GameResults(HandOptions against, HandOptions userHand, MatchOutcome result) {
     }
 
     @Getter
