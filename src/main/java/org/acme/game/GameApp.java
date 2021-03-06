@@ -71,7 +71,7 @@ public class GameApp {
                                        .getAsInt());
         }
 
-        public static String options() {
+        private String options() {
             return PAPER.getHand() + ". " + PAPER.name() + "\t\t"
                      + ROCK.getHand() + ". " + ROCK.name() + "\t\t"
                      + SCISSORS.getHand() + ". " + SCISSORS.name() + "\t\t"
