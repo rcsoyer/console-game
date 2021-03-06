@@ -37,7 +37,7 @@ public final class GamePvM {
 
     private GameResults matchResult(final int handSymbol) {
         final Hands against = randomMachineHand();
-        final Hands userHand = userOption(handSymbol);
+        final Hands userHand = parseUserHand(handSymbol);
         final MatchOutcome result = userHand.beat(against);
         System.out.println("Match result: " + result.name());
         System.out.println("You played: " + userHand.name());
@@ -53,7 +53,7 @@ public final class GamePvM {
         groupedResults.entrySet().forEach(System.out::println);
     }
 
-    private Hands userOption(final int hand) {
+    private Hands parseUserHand(final int hand) {
         return Optional
                  .ofNullable(possibleHands.get(hand))
                  .orElseThrow(() -> new IllegalArgumentException("Invalid option"));
