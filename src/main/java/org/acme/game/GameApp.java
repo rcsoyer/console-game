@@ -11,6 +11,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
+import static java.util.stream.Collectors.groupingBy;
 import static org.acme.game.GameApp.HandOptions.PAPER;
 import static org.acme.game.GameApp.HandOptions.ROCK;
 import static org.acme.game.GameApp.HandOptions.SCISSORS;
@@ -59,6 +60,10 @@ public class GameApp {
 
         private void presentScore() {
             System.out.println("Endgame");
+            System.out.println("Score: ");
+            final var groupedResults =
+              results.stream().collect(groupingBy(GameResults::result));
+            groupedResults.entrySet().forEach(System.out::println);
         }
 
         private HandOptions userOption(final int hand) {
