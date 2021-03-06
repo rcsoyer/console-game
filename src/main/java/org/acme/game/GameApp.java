@@ -32,7 +32,7 @@ public class GameApp {
             int handSymbol;
 
             do {
-                System.out.println("Show your hand \n\tYour Options: " + HandOptions.valueas());
+                System.out.println("Show your hand \n\tYour Options: " + HandOptions.options());
                 handSymbol = input.nextInt();
                 System.out.println("You entered string " + handSymbol);
             } while (handSymbol != 0);
@@ -50,7 +50,7 @@ public class GameApp {
 
         private final int option;
 
-        public static String valueas() {
+        public static String options() {
             return PAPER.getOption() + ". " + PAPER.name() + "\n\t\t\t\t"
                      + ROCK.getOption() + ". " + ROCK.name() + "\n\t\t\t\t"
                      + SCISSORS.getOption() + ". " + SCISSORS.name() + "\n\t\t\t\t"

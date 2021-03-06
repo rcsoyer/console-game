@@ -13,14 +13,7 @@ repositories {
     mavenCentral()
 }
 
-ext {
-    picocliVersion = "4.6.1"
-}
-
 dependencies {
-    implementation "info.picocli:picocli:${picocliVersion}"
-    implementation "info.picocli:picocli-shell-jline3:${picocliVersion}"
-
     testCompileOnly "junit:junit:4.12"
 
     testImplementation "org.junit.jupiter:junit-jupiter-api:5.6.0"
@@ -38,4 +31,10 @@ jacocoTestReport {
 
 test {
     useJUnitPlatform()
+}
+
+lombok {
+    config["lombok.accessors.chain"] = "true"
+    config["lombok.toString.callSuper"] = "call"
+    config["lombok.equalsAndHashCode.callSuper"] = "skip"
 }
