@@ -1,13 +1,8 @@
 package org.acme.game;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 import java.util.Random;
 import java.util.Scanner;
 
-import static java.util.stream.Collectors.groupingBy;
 import static org.acme.game.Hands.PAPER;
 import static org.acme.game.Hands.ROCK;
 import static org.acme.game.Hands.SCISSORS;
@@ -16,55 +11,34 @@ public final class GamePvM {
 
     private static final int END_GAME = 0;
 
-    private final Map<Integer, Hands> possibleHands = Map.of(PAPER.getHand(), PAPER,
-                                                             ROCK.getHand(), ROCK,
-                                                             SCISSORS.getHand(), SCISSORS);
     private final Random random = new Random();
     private final Scanner input = new Scanner(System.in);
-    private final List<GameResults> results = new LinkedList<>();
+    private final GameScore score = new GameScore();
 
     public void start() {
         System.out.println("\nShow your hand \n\tYour Options: " + options());
         int userHand = input.nextInt();
 
         if (userHand == END_GAME) {
-            presentScore();
+            score.showScore();
         } else {
-            results.add(matchResult(userHand));
+            showHands(userHand);
             start();
         }
     }
 
-    private GameResults matchResult(final int handSymbol) {
-        final Hands against = randomMachineHand();
-        final Hands userHand = parseUserHand(handSymbol);
-        final MatchOutcome result = userHand.beat(against);
-        System.out.println("Match result: " + result.name());
-        System.out.println("You played: " + userHand.name());
-        System.out.println("Machine played: " + against.name());
-        return new GameResults(userHand, against, result);
-    }
-
-    private void presentScore() {
-        System.out.println("Endgame");
-        System.out.println("Score: ");
-        final var groupedResults =
-          results.stream().collect(groupingBy(GameResults::result));
-        groupedResults.entrySet().forEach(System.out::println);
-    }
-
-    private Hands parseUserHand(final int hand) {
-        return Optional
-                 .ofNullable(possibleHands.get(hand))
-                 .orElseThrow(() -> new IllegalArgumentException("Invalid option"));
+    private void showHands(final int handSymbol) {
+        final Hands machineHand = randomMachineHand();
+        final Hands userHand = Hands.parse(handSymbol);
+        final MatchOutcome outcome = userHand.beat(machineHand);
+        score.addMatchResult(new MatchResult(userHand, machineHand, outcome));
     }
 
     @SuppressWarnings("OptionalGetWithoutIsPresent")
     private Hands randomMachineHand() {
-        return possibleHands.get(random
-                                   .ints(1, 3)
-                                   .findFirst()
-                                   .getAsInt());
+        return Hands.parse(random.ints(1, 3)
+                                 .findFirst()
+                                 .getAsInt());
     }
 
     private String options() {

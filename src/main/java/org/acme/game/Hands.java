@@ -1,5 +1,8 @@
 package org.acme.game;
 
+import java.util.Map;
+import java.util.Optional;
+
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
@@ -42,6 +45,16 @@ enum Hands {
             };
         }
     };
+
+    private static final Map<Integer, Hands> POSSIBLE_HANDS = Map.of(PAPER.getHand(), PAPER,
+                                                                     ROCK.getHand(), ROCK,
+                                                                     SCISSORS.getHand(), SCISSORS);
+
+    static Hands parse(final int hand) {
+        return Optional
+                 .ofNullable(POSSIBLE_HANDS.get(hand))
+                 .orElseThrow(() -> new IllegalArgumentException("Invalid option"));
+    }
 
     private final int hand;
 
