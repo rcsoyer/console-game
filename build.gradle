@@ -1,0 +1,41 @@
+plugins {
+    id "idea"
+    id "java"
+    id "jacoco"
+    id "checkstyle"
+    id "io.freefair.lombok" version "5.3.0"
+}
+
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    picocliVersion = "4.6.1"
+}
+
+dependencies {
+    implementation "info.picocli:picocli:${picocliVersion}"
+    implementation "info.picocli:picocli-shell-jline3:${picocliVersion}"
+
+    testCompileOnly "junit:junit:4.12"
+
+    testImplementation "org.junit.jupiter:junit-jupiter-api:5.6.0"
+
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine"
+}
+
+tasks.build.dependsOn "checkstyleMain", "checkstyleTest"
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
