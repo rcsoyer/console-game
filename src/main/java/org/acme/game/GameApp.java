@@ -34,15 +34,27 @@ public class GameApp {
 
         private void run() {
             final Scanner input = new Scanner(System.in);
-            int handSymbol;
+            int handSymbol = 1;
 
-            do {
+            while (handSymbol != 0) {
                 System.out.println("Show your hand \n\tYour Options: " + HandOptions.options());
                 handSymbol = input.nextInt();
-                userOption(handSymbol);
-                machineOption();
-                System.out.println("You entered string " + handSymbol);
-            } while (handSymbol != 0);
+                matchResult(handSymbol);
+            }
+
+            presentScore();
+        }
+
+        private void matchResult(final int handSymbol) {
+            final HandOptions against = machineOption();
+            final HandOptions userHand = userOption(handSymbol);
+            final MatchOutcome result = userHand.beat(against);
+            System.out.println("Match result: " + result);
+            System.out.println("You played: " + userHand);
+            System.out.println("Machine played: " + against);
+        }
+
+        private void presentScore() {
         }
 
         private HandOptions userOption(final int hand) {
