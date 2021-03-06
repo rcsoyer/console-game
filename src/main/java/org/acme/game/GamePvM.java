@@ -36,7 +36,7 @@ public final class GamePvM {
 
     @SuppressWarnings("OptionalGetWithoutIsPresent")
     private Hands randomMachineHand() {
-        return Hands.parse(random.ints(1, 3)
+        return Hands.parse(random.ints(1, 4)
                                  .findFirst()
                                  .getAsInt());
     }
