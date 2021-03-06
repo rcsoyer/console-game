@@ -12,7 +12,7 @@ import static org.acme.game.HandOptions.PAPER;
 import static org.acme.game.HandOptions.ROCK;
 import static org.acme.game.HandOptions.SCISSORS;
 
-public final class Gaming {
+public final class GamePvM {
 
     private static final int END_GAME = 0;
 
@@ -36,7 +36,7 @@ public final class Gaming {
     }
 
     private GameResults matchResult(final int handSymbol) {
-        final HandOptions against = machineOption();
+        final HandOptions against = randomMachineHand();
         final HandOptions userHand = userOption(handSymbol);
         final MatchOutcome result = userHand.beat(against);
         System.out.println("Match result: " + result.name());
@@ -60,7 +60,7 @@ public final class Gaming {
     }
 
     @SuppressWarnings("OptionalGetWithoutIsPresent")
-    private HandOptions machineOption() {
+    private HandOptions randomMachineHand() {
         return possibleHands.get(random
                                    .ints(1, 3)
                                    .findFirst()
@@ -71,6 +71,6 @@ public final class Gaming {
         return PAPER.getHand() + ". " + PAPER.name() + "\t\t"
                  + ROCK.getHand() + ". " + ROCK.name() + "\t\t"
                  + SCISSORS.getHand() + ". " + SCISSORS.name() + "\t\t"
-                 + "0. Endgame\t\t";
+                 + END_GAME + ". Endgame\t\t";
     }
 }
