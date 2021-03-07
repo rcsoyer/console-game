@@ -2,8 +2,8 @@
 
 ### About
 
-Simple console application to play the game rock-paper-scissors.
-<br> The game is user, on input via console, against random, not vicious, hand against machine
+Simple interactive console application to play the game rock-paper-scissors.
+<br> The game is user (on input via console) against random (not vicious) machine hand
 
 ### Run the app
 
@@ -39,5 +39,9 @@ actions:
 * 2 - user informs that it is playing ROCK
 * 3 - user informs that it is playing SCISSORS
 * 0 - user informs that wants to finish the game
+
+The user can play as any matches as they want to.
+<br> If the user type on console any other value, besides above mentioned, the program exits with
+error
 
 See: [HandOptions](src/main/java/org/acme/game/domain/Hand.java)
