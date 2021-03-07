@@ -13,7 +13,21 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class HandTest {
 
     @Test
-    void parse() {
+    void parse_PAPER() {
+        assertEquals(PAPER, Hand.parse(1));
+        assertEquals(1, PAPER.getHand());
+    }
+
+    @Test
+    void parse_ROCK() {
+        assertEquals(ROCK, Hand.parse(2));
+        assertEquals(2, ROCK.getHand());
+    }
+
+    @Test
+    void parse_SCISSORS() {
+        assertEquals(SCISSORS, Hand.parse(3));
+        assertEquals(3, SCISSORS.getHand());
     }
 
     @Test
