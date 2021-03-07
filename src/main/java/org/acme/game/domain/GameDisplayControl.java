@@ -2,6 +2,8 @@ package org.acme.game.domain;
 
 import java.util.Scanner;
 
+import org.acme.game.domain.Match.MatchResult;
+
 import static org.acme.game.domain.Hand.PAPER;
 import static org.acme.game.domain.Hand.ROCK;
 import static org.acme.game.domain.Hand.SCISSORS;
@@ -9,7 +11,7 @@ import static org.acme.game.domain.Hand.SCISSORS;
 /**
  * Class to control flow of user input for a game PvM(player versus machine)
  */
-public final class GamePvM {
+public final class GameDisplayControl {
 
     private static final int END_GAME = 0;
 
@@ -24,18 +26,33 @@ public final class GamePvM {
      * @throws IllegalArgumentException         if the int value informed is not on range 1 to 3
      */
     public void start() {
-        System.out.println("\nShow your hand \n\tYour Options: " + options());
+        System.out.println("\nShow your hand \n\tYour Options: " + gameOptions());
         final int userHand = input.nextInt();
 
         if (userHand == END_GAME) {
-            score.showScore();
+            printScore();
         } else {
-            score.addMatchResult(match.showHands(userHand));
+            matchShowdown(userHand);
             start();
         }
     }
 
-    private String options() {
+    private void matchShowdown(final int userHand) {
+        final MatchResult result = match.showHands(userHand);
+        System.out.println("Match result: " + result.outcome().name());
+        System.out.println("You played: " + result.userHand().name());
+        System.out.println("Machine played: " + result.machineHand().name());
+        score.addMatchResult(result);
+    }
+
+    private void printScore() {
+        System.out.println("Endgame\n");
+        System.out.println("Session Game Score: ");
+        score.gameScore()
+             .forEach(result -> System.out.println("\t" + result));
+    }
+
+    private String gameOptions() {
         return PAPER.getHand() + ". " + PAPER.name() + "\t\t"
                  + ROCK.getHand() + ". " + ROCK.name() + "\t\t"
                  + SCISSORS.getHand() + ". " + SCISSORS.name() + "\t\t"
