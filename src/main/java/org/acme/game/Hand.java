@@ -14,10 +14,10 @@ import static org.acme.game.MatchOutcome.USER_WIN;
 @Getter
 @ToString
 @RequiredArgsConstructor
-enum Hands {
+enum Hand {
     PAPER(1) {
         @Override
-        MatchOutcome beat(final Hands against) {
+        MatchOutcome showDown(final Hand against) {
             return switch (against) {
                 case PAPER -> TIE;
                 case SCISSORS -> USER_LOST;
@@ -27,7 +27,7 @@ enum Hands {
     },
     ROCK(2) {
         @Override
-        MatchOutcome beat(final Hands against) {
+        MatchOutcome showDown(final Hand against) {
             return switch (against) {
                 case PAPER -> USER_LOST;
                 case SCISSORS -> USER_WIN;
@@ -37,7 +37,7 @@ enum Hands {
     },
     SCISSORS(3) {
         @Override
-        MatchOutcome beat(final Hands against) {
+        MatchOutcome showDown(final Hand against) {
             return switch (against) {
                 case PAPER -> USER_WIN;
                 case SCISSORS -> TIE;
@@ -46,11 +46,11 @@ enum Hands {
         }
     };
 
-    private static final Map<Integer, Hands> POSSIBLE_HANDS = Map.of(PAPER.getHand(), PAPER,
-                                                                     ROCK.getHand(), ROCK,
-                                                                     SCISSORS.getHand(), SCISSORS);
+    private static final Map<Integer, Hand> POSSIBLE_HANDS = Map.of(PAPER.getHand(), PAPER,
+                                                                    ROCK.getHand(), ROCK,
+                                                                    SCISSORS.getHand(), SCISSORS);
 
-    static Hands parse(final int hand) {
+    static Hand parse(final int hand) {
         return Optional
                  .ofNullable(POSSIBLE_HANDS.get(hand))
                  .orElseThrow(() -> new IllegalArgumentException("Invalid option"));
@@ -58,5 +58,5 @@ enum Hands {
 
     private final int hand;
 
-    abstract MatchOutcome beat(final Hands against);
+    abstract MatchOutcome showDown(final Hand against);
 }

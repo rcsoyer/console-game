@@ -1,4 +1,4 @@
 package org.acme.game;
 
-public record MatchResult(Hands userHand, Hands machineHand, MatchOutcome outcome) {
+public record MatchResult(Hand userHand, Hand machineHand, MatchOutcome outcome) {
 }

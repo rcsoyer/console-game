@@ -1,23 +1,22 @@
 package org.acme.game;
 
-import java.util.Random;
 import java.util.Scanner;
 
-import static org.acme.game.Hands.PAPER;
-import static org.acme.game.Hands.ROCK;
-import static org.acme.game.Hands.SCISSORS;
+import static org.acme.game.Hand.PAPER;
+import static org.acme.game.Hand.ROCK;
+import static org.acme.game.Hand.SCISSORS;
 
 public final class GamePvM {
 
     private static final int END_GAME = 0;
 
-    private final Random random = new Random();
     private final Scanner input = new Scanner(System.in);
     private final GameScore score = new GameScore();
+    private final MachineHand machine = new MachineHand();
 
     public void start() {
         System.out.println("\nShow your hand \n\tYour Options: " + options());
-        int userHand = input.nextInt();
+        final int userHand = input.nextInt();
 
         if (userHand == END_GAME) {
             score.showScore();
@@ -28,17 +27,10 @@ public final class GamePvM {
     }
 
     private void showHands(final int handSymbol) {
-        final Hands machineHand = randomMachineHand();
-        final Hands userHand = Hands.parse(handSymbol);
-        final MatchOutcome outcome = userHand.beat(machineHand);
+        final Hand machineHand = machine.random();
+        final Hand userHand = Hand.parse(handSymbol);
+        final MatchOutcome outcome = userHand.showDown(machineHand);
         score.addMatchResult(new MatchResult(userHand, machineHand, outcome));
-    }
-
-    @SuppressWarnings("OptionalGetWithoutIsPresent")
-    private Hands randomMachineHand() {
-        return Hands.parse(random.ints(1, 4)
-                                 .findFirst()
-                                 .getAsInt());
     }
 
     private String options() {

@@ -3,6 +3,9 @@ package org.acme.game;
 import java.util.LinkedList;
 import java.util.List;
 
+import static java.util.Comparator.reverseOrder;
+import static java.util.Map.Entry.comparingByValue;
+import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
 
 public final class GameScore {
@@ -17,10 +20,14 @@ public final class GameScore {
     }
 
     void showScore() {
-        System.out.println("Endgame");
-        System.out.println("Score: ");
-        final var groupedResults =
-          results.stream().collect(groupingBy(MatchResult::outcome));
-        groupedResults.entrySet().forEach(System.out::println);
+        System.out.println("Endgame\n");
+        System.out.println("Session Game Score: ");
+        results
+          .stream()
+          .collect(groupingBy(MatchResult::outcome, counting()))
+          .entrySet()
+          .stream()
+          .sorted(comparingByValue(reverseOrder()))
+          .forEach(result -> System.out.println("\t" + result));
     }
 }
