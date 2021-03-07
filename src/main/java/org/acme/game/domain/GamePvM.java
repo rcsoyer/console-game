@@ -6,6 +6,9 @@ import static org.acme.game.domain.Hand.PAPER;
 import static org.acme.game.domain.Hand.ROCK;
 import static org.acme.game.domain.Hand.SCISSORS;
 
+/**
+ * Class to control flow of user input for a game PvM(player versus machine)
+ */
 public final class GamePvM {
 
     private static final int END_GAME = 0;
@@ -14,6 +17,12 @@ public final class GamePvM {
     private final GameScore score = new GameScore();
     private final Match match = new Match();
 
+    /**
+     * Only accepts as input from console int numbers on range 0 to 3.
+     *
+     * @throws java.util.InputMismatchException if typed input is not an int
+     * @throws IllegalArgumentException         if the int value informed is not on range 1 to 3
+     */
     public void start() {
         System.out.println("\nShow your hand \n\tYour Options: " + options());
         final int userHand = input.nextInt();
