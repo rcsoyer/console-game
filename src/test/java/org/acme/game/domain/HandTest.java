@@ -9,6 +9,7 @@ import static org.acme.game.domain.MatchOutcome.TIE;
 import static org.acme.game.domain.MatchOutcome.USER_LOST;
 import static org.acme.game.domain.MatchOutcome.USER_WIN;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class HandTest {
 
@@ -28,6 +29,13 @@ class HandTest {
     void parse_SCISSORS() {
         assertEquals(SCISSORS, Hand.parse(3));
         assertEquals(3, SCISSORS.getHand());
+    }
+
+    @Test
+    void parse_invalidHand() {
+        assertThrows(IllegalArgumentException.class,
+                     () -> Hand.parse(666),
+                     "Invalid option");
     }
 
     @Test
