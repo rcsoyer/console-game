@@ -33,6 +33,7 @@ lombok {
     config["lombok.accessors.chain"] = "true"
     config["lombok.toString.callSuper"] = "call"
     config["lombok.equalsAndHashCode.callSuper"] = "skip"
+    config["config.stopBubbling"] = "true"
 }
 
 test {

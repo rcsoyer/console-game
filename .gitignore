@@ -4,3 +4,5 @@
 /out/
 /.idea/
 lombok.config
+/src/main/generated
+/src/test/generated_tests
