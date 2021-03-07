@@ -12,7 +12,7 @@ public final class GamePvM {
 
     private final Scanner input = new Scanner(System.in);
     private final GameScore score = new GameScore();
-    private final MachineHand machine = new MachineHand();
+    private final Match match = new Match();
 
     public void start() {
         System.out.println("\nShow your hand \n\tYour Options: " + options());
@@ -21,16 +21,9 @@ public final class GamePvM {
         if (userHand == END_GAME) {
             score.showScore();
         } else {
-            showHands(userHand);
+            score.addMatchResult(match.showHands(userHand));
             start();
         }
-    }
-
-    private void showHands(final int handSymbol) {
-        final Hand machineHand = machine.random();
-        final Hand userHand = Hand.parse(handSymbol);
-        final MatchOutcome outcome = userHand.showDown(machineHand);
-        score.addMatchResult(new MatchResult(userHand, machineHand, outcome));
     }
 
     private String options() {
