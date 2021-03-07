@@ -7,9 +7,9 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
-import static org.acme.game.domain.MatchOutcome.TIE;
-import static org.acme.game.domain.MatchOutcome.USER_LOST;
-import static org.acme.game.domain.MatchOutcome.USER_WIN;
+import static org.acme.game.domain.Match.MatchOutcome.TIE;
+import static org.acme.game.domain.Match.MatchOutcome.USER_LOST;
+import static org.acme.game.domain.Match.MatchOutcome.USER_WIN;
 
 @Getter
 @ToString
@@ -17,7 +17,7 @@ import static org.acme.game.domain.MatchOutcome.USER_WIN;
 enum Hand {
     PAPER(1) {
         @Override
-        MatchOutcome showDown(final Hand against) {
+        Match.MatchOutcome showDown(final Hand against) {
             return switch (against) {
                 case PAPER -> TIE;
                 case SCISSORS -> USER_LOST;
@@ -27,7 +27,7 @@ enum Hand {
     },
     ROCK(2) {
         @Override
-        MatchOutcome showDown(final Hand against) {
+        Match.MatchOutcome showDown(final Hand against) {
             return switch (against) {
                 case PAPER -> USER_LOST;
                 case SCISSORS -> USER_WIN;
@@ -37,7 +37,7 @@ enum Hand {
     },
     SCISSORS(3) {
         @Override
-        MatchOutcome showDown(final Hand against) {
+        Match.MatchOutcome showDown(final Hand against) {
             return switch (against) {
                 case PAPER -> USER_WIN;
                 case SCISSORS -> TIE;
@@ -58,5 +58,5 @@ enum Hand {
 
     private final int hand;
 
-    abstract MatchOutcome showDown(Hand against);
+    abstract Match.MatchOutcome showDown(Hand against);
 }

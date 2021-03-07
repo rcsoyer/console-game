@@ -10,9 +10,9 @@ import static java.util.stream.Collectors.groupingBy;
 
 final class GameScore {
 
-    private final List<MatchResult> results = new LinkedList<>();
+    private final List<Match.MatchResult> results = new LinkedList<>();
 
-    void addMatchResult(final MatchResult result) {
+    void addMatchResult(final Match.MatchResult result) {
         System.out.println("Match result: " + result.outcome().name());
         System.out.println("You played: " + result.userHand().name());
         System.out.println("Machine played: " + result.machineHand().name());
@@ -23,7 +23,7 @@ final class GameScore {
         System.out.println("Endgame\n");
         System.out.println("Session Game Score: ");
         results.stream()
-               .collect(groupingBy(MatchResult::outcome, counting()))
+               .collect(groupingBy(Match.MatchResult::outcome, counting()))
                .entrySet()
                .stream()
                .sorted(comparingByValue(reverseOrder()))

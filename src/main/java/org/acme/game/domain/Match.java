@@ -10,4 +10,13 @@ final class Match {
         final MatchOutcome outcome = userHand.showDown(machineHand);
         return new MatchResult(userHand, machineHand, outcome);
     }
+
+    static record MatchResult(Hand userHand, Hand machineHand, MatchOutcome outcome) {
+    }
+
+    enum MatchOutcome {
+        USER_WIN,
+        USER_LOST,
+        TIE
+    }
 }

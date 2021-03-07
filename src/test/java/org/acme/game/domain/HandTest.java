@@ -5,9 +5,9 @@ import org.junit.jupiter.api.Test;
 import static org.acme.game.domain.Hand.PAPER;
 import static org.acme.game.domain.Hand.ROCK;
 import static org.acme.game.domain.Hand.SCISSORS;
-import static org.acme.game.domain.MatchOutcome.TIE;
-import static org.acme.game.domain.MatchOutcome.USER_LOST;
-import static org.acme.game.domain.MatchOutcome.USER_WIN;
+import static org.acme.game.domain.Match.MatchOutcome.TIE;
+import static org.acme.game.domain.Match.MatchOutcome.USER_LOST;
+import static org.acme.game.domain.Match.MatchOutcome.USER_WIN;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
