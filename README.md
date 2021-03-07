@@ -17,9 +17,10 @@ This Java projects uses JDK 15 and its preview features.
 
 #### IntelliJ IDEA
 
-Configure the project to point to a JDK 15 available on the local machine enabling JDK preview
-feature.
-<br>The project uses Lombok hence it must be enabled Annotation Processors
+* Configure the project to point to a JDK 15 available on the local machine enabling JDK preview
+  feature.
+* The project uses Lombok hence it must be enabled Annotation Processors.
+* Run the main class [GameApp](src/main/java/org/acme/game/GameApp.java)
 
 ### Game rules
 
