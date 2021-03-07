@@ -9,6 +9,10 @@ java {
     targetCompatibility = JavaVersion.VERSION_15
 }
 
+tasks.withType(JavaCompile) {
+    options.compilerArgs += "--enable-preview"
+}
+
 repositories {
     mavenCentral()
 }
@@ -27,10 +31,6 @@ lombok {
     config["lombok.accessors.chain"] = "true"
     config["lombok.toString.callSuper"] = "call"
     config["lombok.equalsAndHashCode.callSuper"] = "skip"
-}
-
-tasks.withType(JavaCompile) {
-    options.compilerArgs += "--enable-preview"
 }
 
 test {
