@@ -58,5 +58,5 @@ enum Hand {
 
     private final int hand;
 
-    abstract MatchOutcome showDown(final Hand against);
+    abstract MatchOutcome showDown(Hand against);
 }
