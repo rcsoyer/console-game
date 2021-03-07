@@ -22,12 +22,11 @@ final class GameScore {
     void showScore() {
         System.out.println("Endgame\n");
         System.out.println("Session Game Score: ");
-        results
-          .stream()
-          .collect(groupingBy(MatchResult::outcome, counting()))
-          .entrySet()
-          .stream()
-          .sorted(comparingByValue(reverseOrder()))
-          .forEach(result -> System.out.println("\t" + result));
+        results.stream()
+               .collect(groupingBy(MatchResult::outcome, counting()))
+               .entrySet()
+               .stream()
+               .sorted(comparingByValue(reverseOrder()))
+               .forEach(result -> System.out.println("\t" + result));
     }
 }
