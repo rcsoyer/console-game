@@ -10,16 +10,17 @@ java {
     targetCompatibility = JavaVersion.VERSION_15
 }
 
+ext {
+    jUnitVersion = "5.7.1"
+    jvmArgEnablePreview = "--enable-preview"
+}
+
 tasks.withType(JavaCompile) {
-    options.compilerArgs += "--enable-preview"
+    options.compilerArgs += jvmArgEnablePreview
 }
 
 repositories {
     mavenCentral()
-}
-
-ext {
-    jUnitVersion = "5.7.1"
 }
 
 dependencies {
@@ -36,12 +37,12 @@ lombok {
 
 test {
     useJUnitPlatform {
-        jvmArgs += "--enable-preview"
+        jvmArgs += jvmArgEnablePreview
     }
 }
 
 run {
     main = "org.acme.game.GameApp"
-    jvmArgs += "--enable-preview"
+    jvmArgs += jvmArgEnablePreview
     standardInput = System.in
 }
