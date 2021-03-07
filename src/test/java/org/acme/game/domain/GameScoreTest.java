@@ -27,12 +27,12 @@ class GameScoreTest {
 
     @Test
     void calculateScore() {
-        score.addMatchResult(new MatchResult(PAPER, ROCK, USER_WIN));
-        score.addMatchResult(new MatchResult(SCISSORS, PAPER, USER_WIN));
-        score.addMatchResult(new MatchResult(ROCK, SCISSORS, USER_WIN));
-        score.addMatchResult(new MatchResult(ROCK, ROCK, TIE));
-        score.addMatchResult(new MatchResult(SCISSORS, ROCK, USER_LOST));
-        score.addMatchResult(new MatchResult(ROCK, PAPER, USER_LOST));
+        score.addMatchResult(new MatchResult(PAPER, ROCK, USER_WIN))
+             .addMatchResult(new MatchResult(SCISSORS, PAPER, USER_WIN))
+             .addMatchResult(new MatchResult(ROCK, SCISSORS, USER_WIN))
+             .addMatchResult(new MatchResult(ROCK, ROCK, TIE))
+             .addMatchResult(new MatchResult(SCISSORS, ROCK, USER_LOST))
+             .addMatchResult(new MatchResult(ROCK, PAPER, USER_LOST));
 
         final List<Entry<MatchOutcome, Long>> results = score.calculateScore();
 

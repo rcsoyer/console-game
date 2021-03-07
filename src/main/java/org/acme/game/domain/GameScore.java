@@ -23,8 +23,9 @@ final class GameScore {
     /**
      * Adds results of each match
      */
-    void addMatchResult(final MatchResult result) {
+    GameScore addMatchResult(final MatchResult result) {
         results.add(result);
+        return this;
     }
 
     /**
