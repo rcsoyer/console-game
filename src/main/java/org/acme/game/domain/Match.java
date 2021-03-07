@@ -15,8 +15,6 @@ final class Match {
     }
 
     enum MatchOutcome {
-        USER_WIN,
-        USER_LOST,
-        TIE
+        USER_WIN, USER_LOST, TIE
     }
 }
