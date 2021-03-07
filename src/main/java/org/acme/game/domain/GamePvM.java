@@ -1,10 +1,10 @@
-package org.acme.game;
+package org.acme.game.domain;
 
 import java.util.Scanner;
 
-import static org.acme.game.Hand.PAPER;
-import static org.acme.game.Hand.ROCK;
-import static org.acme.game.Hand.SCISSORS;
+import static org.acme.game.domain.Hand.PAPER;
+import static org.acme.game.domain.Hand.ROCK;
+import static org.acme.game.domain.Hand.SCISSORS;
 
 public final class GamePvM {
 

@@ -1,5 +1,7 @@
 package org.acme.game;
 
+import org.acme.game.domain.GamePvM;
+
 public class GameApp {
 
     public static void main(final String[] args) {

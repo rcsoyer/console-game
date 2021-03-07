@@ -1,4 +1,4 @@
-package org.acme.game;
+package org.acme.game.domain;
 
 enum MatchOutcome {
     USER_WIN,

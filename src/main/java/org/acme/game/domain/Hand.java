@@ -1,4 +1,4 @@
-package org.acme.game;
+package org.acme.game.domain;
 
 import java.util.Map;
 import java.util.Optional;
@@ -7,9 +7,9 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
-import static org.acme.game.MatchOutcome.TIE;
-import static org.acme.game.MatchOutcome.USER_LOST;
-import static org.acme.game.MatchOutcome.USER_WIN;
+import static org.acme.game.domain.MatchOutcome.TIE;
+import static org.acme.game.domain.MatchOutcome.USER_LOST;
+import static org.acme.game.domain.MatchOutcome.USER_WIN;
 
 @Getter
 @ToString

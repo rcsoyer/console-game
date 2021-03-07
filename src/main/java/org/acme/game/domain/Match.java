@@ -1,6 +1,6 @@
-package org.acme.game;
+package org.acme.game.domain;
 
-public final class Match {
+final class Match {
 
     private final MachineHand machine = new MachineHand();
 

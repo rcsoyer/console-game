@@ -1,8 +1,8 @@
-package org.acme.game;
+package org.acme.game.domain;
 
 import java.util.Random;
 
-public final class MachineHand {
+final class MachineHand {
 
     private final Random random = new Random();
 

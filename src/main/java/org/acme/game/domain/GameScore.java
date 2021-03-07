@@ -1,4 +1,4 @@
-package org.acme.game;
+package org.acme.game.domain;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -8,7 +8,7 @@ import static java.util.Map.Entry.comparingByValue;
 import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
 
-public final class GameScore {
+final class GameScore {
 
     private final List<MatchResult> results = new LinkedList<>();
 
