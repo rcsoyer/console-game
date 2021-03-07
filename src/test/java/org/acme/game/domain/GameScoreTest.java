@@ -1,7 +1,6 @@
 package org.acme.game.domain;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
 
 import org.acme.game.domain.Match.MatchOutcome;
@@ -9,16 +8,13 @@ import org.acme.game.domain.Match.MatchResult;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static java.util.Comparator.reverseOrder;
-import static java.util.Map.Entry.comparingByValue;
-import static java.util.stream.Collectors.toList;
 import static org.acme.game.domain.Hand.PAPER;
 import static org.acme.game.domain.Hand.ROCK;
 import static org.acme.game.domain.Hand.SCISSORS;
 import static org.acme.game.domain.Match.MatchOutcome.TIE;
 import static org.acme.game.domain.Match.MatchOutcome.USER_LOST;
 import static org.acme.game.domain.Match.MatchOutcome.USER_WIN;
-import static org.junit.jupiter.api.Assertions.assertIterableEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GameScoreTest {
 
@@ -30,30 +26,28 @@ class GameScoreTest {
     }
 
     @Test
-    void gameScore() {
-        final var matchResult1 = new MatchResult(PAPER, ROCK, USER_WIN);
-        final var matchResult2 = new MatchResult(SCISSORS, PAPER, USER_WIN);
-        final var matchResult3 = new MatchResult(ROCK, SCISSORS, USER_WIN);
-        final var matchResult4 = new MatchResult(ROCK, ROCK, TIE);
-        final var matchResult5 = new MatchResult(SCISSORS, ROCK, USER_LOST);
-        final var matchResult6 = new MatchResult(ROCK, PAPER, USER_LOST);
+    void calculateScore() {
+        score.addMatchResult(new MatchResult(PAPER, ROCK, USER_WIN));
+        score.addMatchResult(new MatchResult(SCISSORS, PAPER, USER_WIN));
+        score.addMatchResult(new MatchResult(ROCK, SCISSORS, USER_WIN));
+        score.addMatchResult(new MatchResult(ROCK, ROCK, TIE));
+        score.addMatchResult(new MatchResult(SCISSORS, ROCK, USER_LOST));
+        score.addMatchResult(new MatchResult(ROCK, PAPER, USER_LOST));
 
-        score.addMatchResult(matchResult1);
-        score.addMatchResult(matchResult2);
-        score.addMatchResult(matchResult3);
-        score.addMatchResult(matchResult4);
-        score.addMatchResult(matchResult5);
-        score.addMatchResult(matchResult6);
+        final List<Entry<MatchOutcome, Long>> results = score.calculateScore();
 
-        final List<Entry<MatchOutcome, Long>> expectedResult =
-          Map.of(USER_WIN, 3L, USER_LOST, 2L, TIE, 1L)
-             .entrySet()
-             .stream()
-             .sorted(comparingByValue(reverseOrder()))
-             .collect(toList());
+        assertEquals(3, results.size());
 
-        final List<Entry<MatchOutcome, Long>> result = score.gameScore();
+        final Entry<MatchOutcome, Long> result1 = results.get(0);
+        assertEquals(USER_WIN, result1.getKey());
+        assertEquals(3L, result1.getValue());
 
-        assertIterableEquals(expectedResult, result);
+        final Entry<MatchOutcome, Long> result2 = results.get(1);
+        assertEquals(USER_LOST, result2.getKey());
+        assertEquals(2L, result2.getValue());
+
+        final Entry<MatchOutcome, Long> result3 = results.get(2);
+        assertEquals(TIE, result3.getKey());
+        assertEquals(1L, result3.getValue());
     }
 }

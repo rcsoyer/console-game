@@ -30,7 +30,7 @@ final class GameScore {
     /**
      * Calculate result of the gaming session from accumulated matches and grouped by {@link MatchOutcome}
      */
-    List<Entry<MatchOutcome, Long>> gameScore() {
+    List<Entry<MatchOutcome, Long>> calculateScore() {
         return results.stream()
                       .collect(groupingBy(MatchResult::outcome, counting()))
                       .entrySet()

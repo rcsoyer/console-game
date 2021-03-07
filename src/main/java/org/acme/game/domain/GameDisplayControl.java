@@ -48,7 +48,7 @@ public final class GameDisplayControl {
     private void printScore() {
         System.out.println("Endgame\n");
         System.out.println("Session Game Score: ");
-        score.gameScore()
+        score.calculateScore()
              .forEach(result -> System.out.println("\t" + result));
     }
 
