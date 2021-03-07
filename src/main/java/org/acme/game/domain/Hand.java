@@ -5,14 +5,12 @@ import java.util.Optional;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import lombok.ToString;
 
 import static org.acme.game.domain.Match.MatchOutcome.TIE;
 import static org.acme.game.domain.Match.MatchOutcome.USER_LOST;
 import static org.acme.game.domain.Match.MatchOutcome.USER_WIN;
 
 @Getter
-@ToString
 @RequiredArgsConstructor
 enum Hand {
     PAPER(1) {
