@@ -6,7 +6,8 @@ Simple console application to play the game rock-paper-scissors
 
 ### Run the app
 
-This Java projects uses JDK 15. The JDK must be configured accordingly on local machine
+This Java projects uses JDK 15 and its preview features.
+<br>The JDK must be configured accordingly on local machine
 
 #### Command line
 
