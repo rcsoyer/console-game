@@ -39,3 +39,5 @@ actions:
 * 2 - user informs that it is playing ROCK
 * 3 - user informs that it is playing SCISSORS
 * 0 - user informs that wants to finish the game
+
+See: [HandOptions](src/main/java/org/acme/game/domain/Hand.java)
