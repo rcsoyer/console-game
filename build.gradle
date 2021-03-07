@@ -1,7 +1,6 @@
 plugins {
     id "idea"
     id "java"
-    id "jacoco"
     id "io.freefair.lombok" version "5.3.0"
 }
 
@@ -12,24 +11,14 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
-    compileOnly 'org.projectlombok:lombok:1.18.16'
-    annotationProcessor 'org.projectlombok:lombok:1.18.16'
-
-    testCompileOnly 'org.projectlombok:lombok:1.18.16'
-    testAnnotationProcessor 'org.projectlombok:lombok:1.18.16'
-
-    testCompileOnly "junit:junit:4.12"
-
-    testImplementation "org.junit.jupiter:junit-jupiter-api:5.6.0"
-
-    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine"
+ext {
+    junitVersion = "5.7.1"
 }
 
-jacocoTestReport {
-    reports {
-        xml.enabled true
-    }
+dependencies {
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
+
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
 }
 
 test {
@@ -40,4 +29,8 @@ lombok {
     config["lombok.accessors.chain"] = "true"
     config["lombok.toString.callSuper"] = "call"
     config["lombok.equalsAndHashCode.callSuper"] = "skip"
+}
+
+tasks.withType(JavaCompile) {
+    options.compilerArgs += ['--enable-preview']
 }
