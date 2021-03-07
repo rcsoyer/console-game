@@ -14,6 +14,12 @@ This Java projects uses JDK 15 and its preview features.
 * ./gradlew clean build - build the application
 * gradle run - run the app via gradle command line
 
+#### IntelliJ IDEA
+
+Configure the project to point to a JDK 15 available on the local machine enabling JDK preview
+feature.
+<br>The project uses Lombok hence it must be enabled Annotation Processors
+
 ### Game rules
 
 The winner is determined by the following schema:
