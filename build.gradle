@@ -14,13 +14,13 @@ repositories {
 }
 
 ext {
-    junitVersion = "5.7.1"
+    jUnitVersion = "5.7.1"
 }
 
 dependencies {
-    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${jUnitVersion}"
 
-    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${jUnitVersion}"
 }
 
 lombok {
