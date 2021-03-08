@@ -1,5 +1,6 @@
 package org.acme.game.domain;
 
+import java.util.Random;
 import java.util.Scanner;
 
 import org.acme.game.domain.Match.MatchResult;
@@ -17,7 +18,7 @@ public final class GameDisplayControl {
 
     private final Scanner input = new Scanner(System.in);
     private final GameScore score = new GameScore();
-    private final Match match = new Match(new MachineHand());
+    private final Match match = new Match(new MachineHand(new Random()));
 
     /**
      * Only accepts as input from console int numbers on range 0 to 3.

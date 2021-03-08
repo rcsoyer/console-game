@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
  * Each match of the game can use it to define the outcome
  */
 @RequiredArgsConstructor
-@SuppressWarnings("ClassCanBeRecord")
 final class Match {
 
     private final MachineHand machine;
