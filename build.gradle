@@ -12,6 +12,7 @@ java {
 
 ext {
     jUnitVersion = "5.7.1"
+    mockitoVersion = "3.8.0"
     jvmArgEnablePreview = "--enable-preview"
 }
 
@@ -25,8 +26,10 @@ repositories {
 
 dependencies {
     testImplementation "org.junit.jupiter:junit-jupiter-api:${jUnitVersion}"
+    testImplementation "org.mockito:mockito-junit-jupiter:${mockitoVersion}"
 
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${jUnitVersion}"
+    testRuntimeOnly "org.mockito:mockito-inline:${mockitoVersion}"
 }
 
 lombok {

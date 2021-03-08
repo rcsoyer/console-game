@@ -1,11 +1,15 @@
 package org.acme.game.domain;
 
+import lombok.RequiredArgsConstructor;
+
 /**
  * Each match of the game can use it to define the outcome
  */
+@RequiredArgsConstructor
+@SuppressWarnings("ClassCanBeRecord")
 final class Match {
 
-    private final MachineHand machine = new MachineHand();
+    private final MachineHand machine;
 
     /**
      * Given the informed user hand and a random machine hand defines calculates the outcome

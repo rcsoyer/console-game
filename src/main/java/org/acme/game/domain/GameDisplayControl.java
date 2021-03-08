@@ -17,7 +17,7 @@ public final class GameDisplayControl {
 
     private final Scanner input = new Scanner(System.in);
     private final GameScore score = new GameScore();
-    private final Match match = new Match();
+    private final Match match = new Match(new MachineHand());
 
     /**
      * Only accepts as input from console int numbers on range 0 to 3.
