@@ -1,17 +1,16 @@
 package org.acme.game.domain;
 
+import org.acme.game.domain.Match.MatchOutcome;
+import org.acme.game.domain.Match.MatchResult;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map.Entry;
-
-import org.acme.game.domain.Match.MatchOutcome;
-import org.acme.game.domain.Match.MatchResult;
 
 import static java.util.Comparator.reverseOrder;
 import static java.util.Map.Entry.comparingByValue;
 import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
-import static java.util.stream.Collectors.toList;
 
 /**
  * Holds the game session score per each match
@@ -37,6 +36,6 @@ final class GameScore {
                       .entrySet()
                       .stream()
                       .sorted(comparingByValue(reverseOrder()))
-                      .collect(toList());
+                      .toList();
     }
 }
