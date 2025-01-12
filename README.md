@@ -7,7 +7,7 @@ Simple interactive console application to play the game rock-paper-scissors.
 
 ### Run the app
 
-This Java projects uses JDK 15 and its preview features.
+This Java projects uses JDK 21.
 <br>The JDK must be configured accordingly on local machine
 
 #### Command line
@@ -17,8 +17,7 @@ This Java projects uses JDK 15 and its preview features.
 
 #### IntelliJ IDEA
 
-* Configure the project to point to a JDK 15 available on the local machine enabling JDK preview
-  feature.
+* Configure the project to point to a JDK 21 available on the local machine.
 * The project uses Lombok hence it must be enabled Annotation Processors.
 * Run the main class [GameApp](src/main/java/org/acme/game/GameApp.java)
 
