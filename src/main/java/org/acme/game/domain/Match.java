@@ -23,7 +23,7 @@ final class Match {
     /**
      * Data of what was played in a match
      */
-    static record MatchResult(Hand userHand, Hand machineHand, MatchOutcome outcome) {
+    record MatchResult(Hand userHand, Hand machineHand, MatchOutcome outcome) {
     }
 
     /**
