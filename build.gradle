@@ -2,22 +2,17 @@ plugins {
     id "idea"
     id "java"
     id "application"
-    id "io.freefair.lombok" version "5.3.0"
+    id "io.freefair.lombok" version "8.11"
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_15
-    targetCompatibility = JavaVersion.VERSION_15
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
 }
 
 ext {
-    jUnitVersion = "5.7.1"
-    mockitoVersion = "3.8.0"
-    jvmArgEnablePreview = "--enable-preview"
-}
-
-tasks.withType(JavaCompile) {
-    options.compilerArgs += jvmArgEnablePreview
+    jUnitVersion = "5.11.4"
+    mockitoVersion = "5.15.2"
 }
 
 repositories {
@@ -29,24 +24,13 @@ dependencies {
     testImplementation "org.mockito:mockito-junit-jupiter:${mockitoVersion}"
 
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${jUnitVersion}"
-    testRuntimeOnly "org.mockito:mockito-inline:${mockitoVersion}"
-}
-
-lombok {
-    config["lombok.accessors.chain"] = "true"
-    config["lombok.toString.callSuper"] = "call"
-    config["lombok.equalsAndHashCode.callSuper"] = "skip"
-    config["config.stopBubbling"] = "true"
 }
 
 test {
-    useJUnitPlatform {
-        jvmArgs += jvmArgEnablePreview
-    }
+    useJUnitPlatform()
 }
 
 run {
-    main = "org.acme.game.GameApp"
-    jvmArgs += jvmArgEnablePreview
+    mainClass = "org.acme.game.GameApp"
     standardInput = System.in
 }

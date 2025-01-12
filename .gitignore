@@ -3,6 +3,5 @@
 !gradle/wrapper/gradle-wrapper.jar
 /out/
 /.idea/
-lombok.config
 /src/main/generated
 /src/test/generated_tests
