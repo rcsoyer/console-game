@@ -14,8 +14,8 @@ final class Match {
      * Given the informed user hand and a random machine hand defines calculates the outcome
      */
     MatchResult showHands(final int userOption) {
-        final Hand machineHand = machine.random();
         final Hand userHand = Hand.parse(userOption);
+        final Hand machineHand = machine.random();
         final MatchOutcome outcome = userHand.showDown(machineHand);
         return new MatchResult(userHand, machineHand, outcome);
     }
